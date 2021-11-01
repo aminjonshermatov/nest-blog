@@ -8,6 +8,8 @@ import {AuthService} from "./services/auth.service";
 import {LocalStrategy} from "./services/local.strategy";
 import {AuthController} from "./controllers/auth.controller";
 import {JwtStrategy} from "./services/jwt.strategy";
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {AdminEntity} from "../admin/models/admin.entity";
 
 @Module({
   imports: [
@@ -23,7 +25,10 @@ import {JwtStrategy} from "./services/jwt.strategy";
           expiresIn: configService.get('JWT_EXPIRES_IN')
         }
       })
-    })
+    }),
+    TypeOrmModule.forFeature([
+      AdminEntity
+    ])
   ],
   controllers: [
     AuthController
