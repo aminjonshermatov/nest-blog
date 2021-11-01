@@ -16,4 +16,8 @@ export class AdminRepository {
   async findByLogin(login: string): Promise<AdminModel | undefined> {
     return this._admins.find(admin => admin.login === login);
   }
+
+  async findById(id: number): Promise<AdminModel | undefined> {
+    return this._admins.find(admin => admin.id === id);
+  }
 }

@@ -1,11 +1,15 @@
 import {Injectable} from "@nestjs/common";
+import {JwtService} from "@nestjs/jwt";
 
 import {AdminRepository} from "../../admin/services/admin.repository";
 import {AdminModel} from "../../admin/models/admin.model";
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly adminRepository: AdminRepository) {
+  constructor(
+    private readonly adminRepository: AdminRepository,
+    private readonly jwtService: JwtService
+  ) {
   }
 
 
@@ -18,5 +22,13 @@ export class AuthService {
     }
 
     return null;
+  }
+
+  async login(admin: AdminModel) {
+    const payload = {id: admin.id};
+
+    return {
+      accessToken: this.jwtService.sign(payload)
+    }
   }
 }
