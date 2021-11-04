@@ -1,0 +1,13 @@
+### Basic authorization.
+GET {{host}}/menu
+Authorization: Bearer {{auth_token}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 200, "Response status is not 200");
+});
+
+client.test("Request is array", function() {
+  client.assert(Array.isArray(response.body), "Response isn't array");
+});
+%}
