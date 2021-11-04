@@ -8,6 +8,7 @@ export interface MenuNode {
   id: string;
   parentId: string;
   sortOrder: number;
+  removed?: boolean;
 }
 
 export type PatchMenuNode = Pick<MenuNode, 'id'>
