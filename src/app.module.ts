@@ -5,12 +5,14 @@ import {ConfigModule} from "@nestjs/config";
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {AuthModule} from "./modules/auth/auth.module";
+import {AdminMenuModule} from "./modules/admin-menu/admin-menu.module";
 
 @Module({
   imports: [
     TypeOrmModule.forRoot(),
     ConfigModule.forRoot(),
-    AuthModule
+    AuthModule,
+    AdminMenuModule
   ],
   controllers: [AppController],
   providers: [AppService],
